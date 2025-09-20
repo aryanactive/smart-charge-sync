@@ -54,14 +54,18 @@
     --gradient-hero: linear-gradient(135deg, hsl(217 91% 60%) 0%, hsl(142 76% 36%) 100%);
     --gradient-card: linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(240 20% 99%) 100%);
 
-    /* Elegant Shadows */
-    --shadow-card: 0 4px 6px -1px hsl(220 15% 10% / 0.1), 0 2px 4px -1px hsl(220 15% 10% / 0.06);
-    --shadow-electric: 0 10px 25px -5px hsl(217 91% 60% / 0.4);
-    --shadow-energy: 0 10px 25px -5px hsl(142 76% 36% / 0.4);
+    /* Enhanced Shadows */
+    --shadow-card: 0 8px 32px -8px hsl(195 95% 55% / 0.2), 0 0 0 1px hsl(195 95% 55% / 0.05);
+    --shadow-electric: 0 12px 40px -12px hsl(195 95% 55% / 0.5), 0 0 100px -20px hsl(195 95% 55% / 0.2);
+    --shadow-energy: 0 16px 48px -16px hsl(142 85% 45% / 0.4), 0 0 80px -15px hsl(142 85% 45% / 0.15);
+    --shadow-glow: 0 0 60px -10px hsl(195 95% 55% / 0.3);
+    --shadow-inner: inset 0 1px 0 hsl(195 95% 55% / 0.1);
 
-    /* Smooth Transitions */
+    /* Enhanced Transitions */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-electric: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-electric: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    --transition-bounce: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    --transition-elastic: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 
     --sidebar-background: 0 0% 98%;
 
@@ -82,8 +86,8 @@
 
   .dark {
     /* Dark mode optimized for professional dashboards */
-    --background: 220 15% 8%;
-    --foreground: 240 20% 98%;
+    --background: 217 25% 4%;
+    --foreground: 210 20% 98%;
 
     --card: 220 15% 10%;
     --card-foreground: 240 20% 98%;
@@ -105,11 +109,13 @@
     --input: 220 15% 15%;
     --ring: 217 91% 70%;
 
-    /* Updated gradients for dark mode */
-    --gradient-electric: linear-gradient(135deg, hsl(217 91% 70%), hsl(217 91% 80%));
-    --gradient-energy: linear-gradient(135deg, hsl(142 76% 46%), hsl(142 76% 56%));
-    --gradient-hero: linear-gradient(135deg, hsl(217 91% 70%) 0%, hsl(142 76% 46%) 100%);
-    --gradient-card: linear-gradient(180deg, hsl(220 15% 10%) 0%, hsl(220 15% 12%) 100%);
+    /* Enhanced gradients for dark mode */
+    --gradient-electric: linear-gradient(135deg, hsl(195 95% 55%) 0%, hsl(175 85% 50%) 25%, hsl(142 85% 45%) 100%);
+    --gradient-energy: linear-gradient(180deg, hsl(142 85% 45%) 0%, hsl(175 95% 50%) 50%, hsl(195 95% 55%) 100%);
+    --gradient-hero: linear-gradient(135deg, hsl(195 95% 65%) 0%, hsl(175 85% 55%) 30%, hsl(142 85% 55%) 60%, hsl(60 95% 55%) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(220 15% 10%) 0%, hsl(217 25% 8%) 40%, hsl(220 15% 10%) 70%, hsl(195 95% 55% / 0.08) 100%);
+    --gradient-glow: radial-gradient(ellipse at center, hsl(195 95% 55% / 0.2) 0%, transparent 70%);
+    --gradient-mesh: conic-gradient(from 0deg at 50% 50%, hsl(195 95% 55% / 0.1), hsl(142 85% 45% / 0.1), hsl(60 95% 55% / 0.1), hsl(195 95% 55% / 0.1));
 
     --sidebar-background: 220 15% 8%;
     --sidebar-foreground: 240 20% 98%;
@@ -129,9 +135,36 @@
 
   body {
     @apply bg-background text-foreground font-sans;
+    background-attachment: fixed;
   }
 
-  /* Custom animations for charging elements */
+  /* Enhanced animations for impressive effects */
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-8px); }
+  }
+
+  @keyframes pulse-glow {
+    0%, 100% { 
+      box-shadow: var(--shadow-card);
+      transform: scale(1);
+    }
+    50% { 
+      box-shadow: var(--shadow-electric);
+      transform: scale(1.02);
+    }
+  }
+
+  @keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+
+  @keyframes rotate-gradient {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
   @keyframes pulse-electric {
     0%, 100% {
       opacity: 1;
@@ -152,6 +185,26 @@
     }
   }
 
+  /* Utility classes for impressive effects */
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-pulse-glow {
+    animation: pulse-glow 3s ease-in-out infinite;
+  }
+
+  .animate-shimmer {
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      hsl(195 95% 55% / 0.1) 50%,
+      transparent 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 2s ease-in-out infinite;
+  }
+
   .animate-pulse-electric {
     animation: pulse-electric 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   }
@@ -159,5 +212,27 @@
   .animate-charging-flow {
     animation: charging-flow 2s linear infinite;
     background-size: 200% 200%;
+  }
+
+  .glassmorphism {
+    background: hsl(var(--card) / 0.8);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid hsl(var(--border) / 0.2);
+  }
+
+  .mesh-gradient {
+    background: var(--gradient-mesh);
+    position: relative;
+  }
+
+  .mesh-gradient::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--gradient-glow);
+    animation: rotate-gradient 20s linear infinite;
+    border-radius: inherit;
+    z-index: -1;
   }
 }

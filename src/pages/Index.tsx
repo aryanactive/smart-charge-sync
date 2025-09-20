@@ -27,7 +27,7 @@ const Index = () => {
               <div className="flex items-center justify-between">
                 <div className="space-y-3">
                   <h2 className="text-4xl font-bold tracking-tight bg-gradient-hero bg-clip-text text-transparent animate-shimmer">
-                    Welcome back, Hilton 👋
+                    Welcome back, ARYAN Active 👋
                   </h2>
                   <p className="text-lg text-muted-foreground/90 max-w-2xl">
                     Here's what's happening with your EV charging network today. Monitor, manage, and optimize your sustainable energy infrastructure.
